@@ -25,6 +25,19 @@ $docId = $_GET['q'];
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <script src="https://cdn.tiny.cloud/1/jt1gi5f8nvi2bbr4rp708mz9gfmbj8qlfu8s4vm6mezfickq/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
+
+        <style type = "text/css">
+      @media screen {
+         .card {font-family:verdana, arial, sans-serif;}
+      }
+
+      @media print {
+         .card {font-family:georgia, times, serif;}
+      }
+      @media screen, print {
+         .card {font-size:10pt}
+      }
+</style>
 </head>
 
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -121,7 +134,7 @@ $docId = $_GET['q'];
                                 }
                                 ?>
                                 <div class="card-footer  d-flex justify-content-end">
-                                    <button type="button" class="btn btn-primary">Print</button>
+                                    <button type="button" class="btn btn-primary" onclick="window.print()">Print</button>
                                 </div>
                         </div>
                         <!-- /.col -->
