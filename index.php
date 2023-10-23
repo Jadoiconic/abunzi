@@ -1,4 +1,14 @@
 <?php require_once "session.php" ?>
+<?php
+require_once "./actions/conn.php";
+$sql = "SELECT * FROM `users`";
+$qry = mysqli_query($conn, $sql);
+$countUsers = mysqli_num_rows($qry);
+$sqli = "SELECT * FROM `ibirego`";
+$qryi = mysqli_query($conn, $sqli);
+$countIbirego = mysqli_num_rows($qryi);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,36 +99,28 @@
 
                         <div class="col-md-12 d-flex justify-content-center">
                             <!-- Info Boxes Style 2 -->
-                            <div class="info-box mb-3 bg-warning mx-1">
-                                <span class="info-box-icon"><i class="fas fa-tag"></i></span>
+                            <div class="info-box mb-3 bg-info mx-1">
+                                <span class="info-box-icon"><i class="fas fa-users"></i></span>
 
                                 <div class="info-box-content">
-                                    <span class="info-box-text">Visitors</span>
-                                    <span class="info-box-number">5,200</span>
+                                    <span class="info-box-text">Abakoresha</span>
+                                    <span class="info-box-number"><?php print($countUsers) ?></span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
                             <!-- /.info-box -->
                             <div class="info-box mb-3 bg-success  mx-1">
-                                <span class="info-box-icon"><i class="far fa-heart"></i></span>
+                                <span class="info-box-icon"><i class="far fa-file"></i></span>
 
                                 <div class="info-box-content">
-                                    <span class="info-box-text">Clients</span>
-                                    <span class="info-box-number">92,050</span>
+                                    <span class="info-box-text">ibirego</span>
+                                    <span class="info-box-number"><?php print($countIbirego) ?></span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
                             <!-- /.info-box -->
                             <!-- /.info-box -->
-                            <div class="info-box mb-3 bg-info mx-1">
-                                <span class="info-box-icon"><i class="far fa-comment"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Direct Messages</span>
-                                    <span class="info-box-number">163,921</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
+                            
 
                         </div>
                         <!-- /.col -->

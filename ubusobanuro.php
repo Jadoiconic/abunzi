@@ -128,62 +128,7 @@ $docId = $_GET['q'];
                     </div>
                     <!-- /.row -->
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Ikirego</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <form action="./actions/handleIbirego.php" method="post">
-                                    <div class="modal-body">
-                                        <div class="px-2">
-                                            <div>
-                                                <label for="fname">Urega</label>
-                                                <input requied type="text" name="pfname" placeholder="CYURINYANA Agnes" class="form-control">
-                                            </div>
-                                            <div>
-                                                <label for="lname">Uregwa</label>
-                                                <input requied type="text" name="dfname" placeholder="KANAMUGIRE Faustin" class="form-control">
-                                            </div>
-                                            <div>
-                                                <label for="email">Umutwe w'ikirego</label>
-                                                <input requied type="text" placeholder="GUKUBITA no GUKOMERETSA" name="problem" class="form-control">
-                                            </div>
-                                            <div>
-                                                <label for="pass">Ubusobanuro</label>
-                                                <textarea requied name="description" placeholder="CYURINYANA Agnes ararega uwo bashakanye KANAMUGIRE Faustin... " class="form-control">
-                                                </textarea>
-                                                
-                                                <script>
-                                                    tinymce.init({
-                                                        selector: 'textarea',
-                                                        plugins: 'ai tinycomments mentions anchor autolink charmap link lists table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography',
-                                                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link table mergetags | align lineheight | checklist numlist bullist indent outdent | removeformat',
-                                                        tinycomments_mode: 'embedded',
-                                                        tinycomments_author: 'Author name',
-                                                        mergetags_list: [
-                                                            { value: 'First.Name', title: 'First Name' },
-                                                            { value: 'Email', title: 'Email' },
-                                                        ],
-                                                        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant"))
-                                                    });
-                                                </script>
-                                            </div>
-                                            <input type="hidden" name="userId" value="<?php print($userId); ?>">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
                 <!--/. container-fluid -->
             </section>

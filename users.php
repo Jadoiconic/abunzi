@@ -184,7 +184,7 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                             </div>
                                             <div>
                                                 <label for="email">Email</label>
-                                                <input requied type="text" name="email" class="form-control">
+                                                <input requied type="email" name="email" class="form-control">
                                             </div>
                                             <div>
                                                 <label for="pass">Password</label>
@@ -229,10 +229,7 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
 
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
-    <script>
 
-        new DataTable('#example');
-    </script>
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

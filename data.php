@@ -25,6 +25,7 @@ $userId = $_SESSION['userInfo']['id'];
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <script src="https://cdn.tiny.cloud/1/jt1gi5f8nvi2bbr4rp708mz9gfmbj8qlfu8s4vm6mezfickq/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
+       
 </head>
 
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -103,7 +104,7 @@ $userId = $_SESSION['userInfo']['id'];
                                     </a></div>
                             </div>
                             <!-- Info Boxes Style 2 -->
-                            <table class="table table-striped">
+                            <table class="table table-striped" id="myTable">
                                 <thead class="bg-info">
                                     <tr>
                                         <td>N<sup>o</sup></td>
