@@ -23,6 +23,8 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
 </head>
 
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -102,23 +104,23 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                     </button></div>
                             </div>
                             <!-- Info Boxes Style 2 -->
-                            <table id="example" class="table table-striped nowrap">
+                            <table id="myTable" class="table nowrap">
                                 <thead class="bg-info">
-                                    <tr>
-                                        <td>N<sup>o</sup></td>
-                                        <td>First Name</td>
-                                        <td>Last Name</td>
-                                        <td>Email</td>
-                                        <td>Status</td>
-                                        <td>createdAt</td>
-                                        <td>UpdatedAt</td>
+                                   
+                                        <th>N<sup>o</sup></th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <th>createdAt</th>
+                                        <th>UpdatedAt</th>
                                         <?php if ($isAdmin == 1) {
                                             ?>
-                                            <td colspan="2">Actions</td>
+                                            <th>Actions</th>
                                         <?php } ?>
-                                    </tr>
+                                    
                                 </thead>
-
+                                <tbody>
                                 <?php
                                 $slt = "SELECT * FROM `users`";
                                 $n = 1;
@@ -144,12 +146,19 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                         <td>
                                             <?php print($row['createdAt']) ?>
                                         </td>
+                                        <td>
+                                            <?php print($row['updatedAt']) ?>
+                                        </td>
                                         <?php if ($isAdmin == 1) {
                                             ?>
-                                            <td><a class="btn py-0 btn-success"
-                                                    href="updateUser.php?q=<?php print($row[0]) ?>">Update</a></td>
-                                            <td><a class="btn py-0 btn-danger"
-                                                    href="deleteUser.php?q=<?php print($row[0]) ?>">Delete</a></td>
+                                            <td>
+                                            <div class="btn btn-group">
+                                                <a class="btn py-0 btn-success"
+                                                        href="updateUser.php?q=<?php print($row[0]) ?>">Update</a>
+                                                <a class="btn py-0 btn-danger"
+                                                    href="deleteUser.php?q=<?php print($row[0]) ?>">Delete</a>
+                                            </div>
+                                            </td>
                                             <?php
                                         } ?>
                                     </tr>
@@ -157,6 +166,7 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                     $n++;
                                 }
                                 ?>
+                                </tbody>
                             </table>
                         </div>
                         <!-- /.col -->
@@ -251,6 +261,12 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
         crossorigin="anonymous"></script>
 
     <script src="dist/js/pages/dashboard2.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
 </body>
 
 </html>

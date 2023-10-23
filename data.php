@@ -25,6 +25,7 @@ $userId = $_SESSION['userInfo']['id'];
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <script src="https://cdn.tiny.cloud/1/jt1gi5f8nvi2bbr4rp708mz9gfmbj8qlfu8s4vm6mezfickq/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
        
 </head>
 
@@ -104,7 +105,7 @@ $userId = $_SESSION['userInfo']['id'];
                                     </a></div>
                             </div>
                             <!-- Info Boxes Style 2 -->
-                            <table class="table table-striped" id="myTable">
+                            <table class="table" id="myTable">
                                 <thead class="bg-info">
                                     <tr>
                                         <td>N<sup>o</sup></td>
@@ -113,7 +114,7 @@ $userId = $_SESSION['userInfo']['id'];
                                         <td>Umutwe W'ikirego</td>
                                         <td>Ubusobanuro bw'ikirego</td>
                                         <td>Byakozwe</td>
-                                        <td colspan="2">Actions</td>
+                                        <td>Actions</td>
                                     </tr>
                                 </thead>
 
@@ -144,8 +145,8 @@ $userId = $_SESSION['userInfo']['id'];
                                             <?php print($row['createdAt']) ?>
                                         </td>
                                         <td><a class="btn py-0 btn-success"
-                                                href="updateDoc.php?q=<?php print($row[0]) ?>">Hindura</a></td>
-                                        <td><a class="btn py-0 btn-danger"
+                                                href="updateDoc.php?q=<?php print($row[0]) ?>">Hindura</a>
+                                                <a class="btn py-0 btn-danger"
                                                 href="deleteDoc.php?q=<?php print($row[0]) ?>">Siba</a></td>
                                     </tr>
                                     <?php
@@ -255,6 +256,12 @@ $userId = $_SESSION['userInfo']['id'];
         crossorigin="anonymous"></script>
 
     <script src="dist/js/pages/dashboard2.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
 </body>
 
 </html>
