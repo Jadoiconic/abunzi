@@ -23,13 +23,13 @@
             <li class="nav-item">
                 <a href="./data.php" class="nav-link">
                     <i class="fa fa-file nav-icon"></i>
-                    <p>Documents</p>
+                    <p>Ibirego</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="./users.php" class="nav-link">
                     <i class="fa fa-users nav-icon"></i>
-                    <p>Users</p>
+                    <p>Abakozi</p>
                 </a>
             </li>
             
@@ -46,14 +46,14 @@
                     <li class="nav-item">
                         <a href="./profileSetting.php" class="nav-link">
                             <i class="fas fa-user nav-icon"></i>
-                            <p>Profile</p>
+                            <p>Umwirondoro</p>
                         </a>
                     </li>
                     
                     <li class="nav-item">
                         <a href="./logout.php" class="nav-link">
                             <i class="fas fa-sign-out-alt nav-icon"></i>
-                            <p>Sign Out</p>
+                            <p>Sohokamo</p>
                         </a>
                     </li>
                 </ul>

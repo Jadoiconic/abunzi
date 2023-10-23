@@ -23,6 +23,8 @@ $userId = $_SESSION['userInfo']['id'];
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <script src="https://cdn.tiny.cloud/1/jt1gi5f8nvi2bbr4rp708mz9gfmbj8qlfu8s4vm6mezfickq/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
 </head>
 
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -96,21 +98,20 @@ $userId = $_SESSION['userInfo']['id'];
                         <div class="col-md-12">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div></div>
-                                <div><button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                        Add New Document
-                                    </button></div>
+                                <div><a href="ikirego.php" class="btn btn-primary">
+                                        Ongera Ikirego
+                                    </a></div>
                             </div>
                             <!-- Info Boxes Style 2 -->
                             <table class="table table-striped">
                                 <thead class="bg-info">
                                     <tr>
                                         <td>N<sup>o</sup></td>
-                                        <td>plaintiff Name</td>
-                                        <td>Defender Name</td>
-                                        <td>Problem</td>
-                                        <td>Description</td>
-                                        <td>requested at</td>
+                                        <td>Urega</td>
+                                        <td>Uregwa</td>
+                                        <td>Umutwe W'ikirego</td>
+                                        <td>Ubusobanuro bw'ikirego</td>
+                                        <td>Byakozwe</td>
                                         <td colspan="2">Actions</td>
                                     </tr>
                                 </thead>
@@ -135,15 +136,16 @@ $userId = $_SESSION['userInfo']['id'];
                                             <?php print($row['title']) ?>
                                         </td>
                                         <td>
-                                            <?php print($row['description']) ?>
+                                        <a class="btn py-0 btn-primary"
+                                                href="ubusobanuro.php?q=<?php print($row[0]) ?>">Reba ubusobanuro</a>
                                         </td>
                                         <td>
                                             <?php print($row['createdAt']) ?>
                                         </td>
                                         <td><a class="btn py-0 btn-success"
-                                                href="updateDoc.php?q=<?php print($row[0]) ?>">Update</a></td>
+                                                href="updateDoc.php?q=<?php print($row[0]) ?>">Hindura</a></td>
                                         <td><a class="btn py-0 btn-danger"
-                                                href="deleteDoc.php?q=<?php print($row[0]) ?>">Delete</a></td>
+                                                href="deleteDoc.php?q=<?php print($row[0]) ?>">Siba</a></td>
                                     </tr>
                                     <?php
                                     $n++;
@@ -160,7 +162,7 @@ $userId = $_SESSION['userInfo']['id'];
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Ikirego</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -168,21 +170,36 @@ $userId = $_SESSION['userInfo']['id'];
                                     <div class="modal-body">
                                         <div class="px-2">
                                             <div>
-                                                <label for="fname">plaintiff Name</label>
-                                                <input requied type="text" name="pfname" class="form-control">
+                                                <label for="fname">Urega</label>
+                                                <input requied type="text" name="pfname" placeholder="CYURINYANA Agnes" class="form-control">
                                             </div>
                                             <div>
-                                                <label for="lname">Defender Name</label>
-                                                <input requied type="text" name="dfname" class="form-control">
+                                                <label for="lname">Uregwa</label>
+                                                <input requied type="text" name="dfname" placeholder="KANAMUGIRE Faustin" class="form-control">
                                             </div>
                                             <div>
-                                                <label for="email">Problem</label>
-                                                <input requied type="text" name="problem" class="form-control">
+                                                <label for="email">Umutwe w'ikirego</label>
+                                                <input requied type="text" placeholder="GUKUBITA no GUKOMERETSA" name="problem" class="form-control">
                                             </div>
                                             <div>
-                                                <label for="pass">Description</label>
-                                                <textarea requied name="description" class="form-control">
+                                                <label for="pass">Ubusobanuro</label>
+                                                <textarea requied name="description" placeholder="CYURINYANA Agnes ararega uwo bashakanye KANAMUGIRE Faustin... " class="form-control">
                                                 </textarea>
+                                                
+                                                <script>
+                                                    tinymce.init({
+                                                        selector: 'textarea',
+                                                        plugins: 'ai tinycomments mentions anchor autolink charmap link lists table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography',
+                                                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link table mergetags | align lineheight | checklist numlist bullist indent outdent | removeformat',
+                                                        tinycomments_mode: 'embedded',
+                                                        tinycomments_author: 'Author name',
+                                                        mergetags_list: [
+                                                            { value: 'First.Name', title: 'First Name' },
+                                                            { value: 'Email', title: 'Email' },
+                                                        ],
+                                                        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant"))
+                                                    });
+                                                </script>
                                             </div>
                                             <input type="hidden" name="userId" value="<?php print($userId); ?>">
                                         </div>

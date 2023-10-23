@@ -1,8 +1,7 @@
 <?php
 require_once "session.php";
 require_once "./actions/conn.php";
-$userId = $_SESSION['userInfo']['id'];
-$isAdmin = $_SESSION['userInfo']['isAdmin'];
+$docId = $_GET['q'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,10 +18,13 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <script src="https://cdn.tiny.cloud/1/jt1gi5f8nvi2bbr4rp708mz9gfmbj8qlfu8s4vm6mezfickq/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
 </head>
 
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -93,110 +95,84 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                     <!-- Main row -->
                     <div class="row">
 
-                        <div class="col-md-12">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div></div>
-                                <div><button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                        Add New User
-                                    </button></div>
-                            </div>
+                        <div class="card">
                             <!-- Info Boxes Style 2 -->
-                            <table id="example" class="table table-striped nowrap">
-                                <thead class="bg-info">
-                                    <tr>
-                                        <td>N<sup>o</sup></td>
-                                        <td>First Name</td>
-                                        <td>Last Name</td>
-                                        <td>Email</td>
-                                        <td>Status</td>
-                                        <td>createdAt</td>
-                                        <td>UpdatedAt</td>
-                                        <?php if ($isAdmin == 1) {
-                                            ?>
-                                            <td colspan="2">Actions</td>
-                                        <?php } ?>
-                                    </tr>
-                                </thead>
+                            
 
                                 <?php
-                                $slt = "SELECT * FROM `users`";
+                                $slt = "SELECT * FROM `ibirego` WHERE `id`='$docId'";
                                 $n = 1;
                                 $qry = mysqli_query($conn, $slt);
                                 while ($row = mysqli_fetch_array($qry)) {
                                     ?>
-                                    <tr>
-                                        <td>
-                                            <?php print($n) ?>
-                                        </td>
-                                        <td>
-                                            <?php print($row['fname']) ?>
-                                        </td>
-                                        <td>
-                                            <?php print($row['lname']) ?>
-                                        </td>
-                                        <td>
-                                            <?php print($row['email']) ?>
-                                        </td>
-                                        <td>
-                                            <?php print($row['status'] == 1 ? 'Active' : 'Inactive') ?>
-                                        </td>
-                                        <td>
-                                            <?php print($row['createdAt']) ?>
-                                        </td>
-                                        <?php if ($isAdmin == 1) {
-                                            ?>
-                                            <td><a class="btn py-0 btn-success"
-                                                    href="updateUser.php?q=<?php print($row[0]) ?>">Update</a></td>
-                                            <td><a class="btn py-0 btn-danger"
-                                                    href="deleteUser.php?q=<?php print($row[0]) ?>">Delete</a></td>
-                                            <?php
-                                        } ?>
-                                    </tr>
+                                    <b class="card-header">
+                                    Intara: <?php print($row['intara']) ?> <br>
+                                    akarere: <?php print($row['akarere']) ?><br>
+                                    umurenge: <?php print($row['umurenge']) ?><br>
+                                    Akagari: <?php print($row['akagari']) ?> <br>
+                                    Date: <?php print($row['createdAt']) ?> <br><br>
+                                </b>
+                                   <p> <b><u>Imamvu</u>: </b> <?php print($row['title']) ?> <br><br></p>
+                                    
+                                            <?php print($row['description']) ?>
+                                        
                                     <?php
                                     $n++;
                                 }
                                 ?>
-                            </table>
+                                <div class="card-footer  d-flex justify-content-end">
+                                    <button type="button" class="btn btn-primary">Print</button>
+                                </div>
                         </div>
                         <!-- /.col -->
                     </div>
+                    <!-- /.row -->
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Ikirego</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form action="./actions/registerUser.php" method="post">
+                                <form action="./actions/handleIbirego.php" method="post">
                                     <div class="modal-body">
                                         <div class="px-2">
                                             <div>
-                                                <label for="fname">First Name</label>
-                                                <input requied type="text" name="fname" class="form-control">
+                                                <label for="fname">Urega</label>
+                                                <input requied type="text" name="pfname" placeholder="CYURINYANA Agnes" class="form-control">
                                             </div>
                                             <div>
-                                                <label for="lname">Last Name</label>
-                                                <input requied type="text" name="lname" class="form-control">
+                                                <label for="lname">Uregwa</label>
+                                                <input requied type="text" name="dfname" placeholder="KANAMUGIRE Faustin" class="form-control">
                                             </div>
                                             <div>
-                                                <label for="email">Email</label>
-                                                <input requied type="text" name="email" class="form-control">
+                                                <label for="email">Umutwe w'ikirego</label>
+                                                <input requied type="text" placeholder="GUKUBITA no GUKOMERETSA" name="problem" class="form-control">
                                             </div>
                                             <div>
-                                                <label for="pass">Password</label>
-                                                <input requied type="password" name="pass" class="form-control">
+                                                <label for="pass">Ubusobanuro</label>
+                                                <textarea requied name="description" placeholder="CYURINYANA Agnes ararega uwo bashakanye KANAMUGIRE Faustin... " class="form-control">
+                                                </textarea>
+                                                
+                                                <script>
+                                                    tinymce.init({
+                                                        selector: 'textarea',
+                                                        plugins: 'ai tinycomments mentions anchor autolink charmap link lists table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography',
+                                                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link table mergetags | align lineheight | checklist numlist bullist indent outdent | removeformat',
+                                                        tinycomments_mode: 'embedded',
+                                                        tinycomments_author: 'Author name',
+                                                        mergetags_list: [
+                                                            { value: 'First.Name', title: 'First Name' },
+                                                            { value: 'Email', title: 'Email' },
+                                                        ],
+                                                        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant"))
+                                                    });
+                                                </script>
                                             </div>
-                                            <div>
-                                                <label for="pass">Admin status</label>
-                                                <select name="isAdmin" class="form-control">
-                                                    <option value="0">Not Admin</option>
-                                                    <option value="1">Admin</option>
-                                                </select>
-                                            </div>
+                                            <input type="hidden" name="userId" value="<?php print($userId); ?>">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -208,7 +184,6 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                             </div>
                         </div>
                     </div>
-                    <!-- /.row -->
                 </div>
                 <!--/. container-fluid -->
             </section>
@@ -229,10 +204,6 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
 
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
-    <script>
-
-        new DataTable('#example');
-    </script>
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

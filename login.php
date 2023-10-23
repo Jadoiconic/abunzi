@@ -29,7 +29,7 @@
         <div class="row flex-column justify-content-center align-items-center" style="height:90vh;">
             <div class="w-50 px-5">
                 <?php
-                if($_SESSION["loginError"]){
+                if(isset($_SESSION["loginError"])){
                     ?>
                     <div class="alert alert-danger">
                         <?php print($_SESSION["loginError"]) ?>

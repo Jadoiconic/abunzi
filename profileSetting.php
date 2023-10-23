@@ -93,7 +93,7 @@
                                 <h2>Change Password</h2>
                                 <div class="w-50">
                                     <?php 
-                                    if($_SESSION['successUpdatePassword']){
+                                    if(isset($_SESSION['successUpdatePassword'])){
                                         ?>
                                         <div class="alter alert-success p-2 rounded">
                                             <h4><?php print($_SESSION['successUpdatePassword']); ?></h4>
@@ -103,7 +103,7 @@
                                     }
                                     ?>
                                     <?php 
-                                    if($_SESSION['errorUpdatePassword']){
+                                    if(isset($_SESSION['errorUpdatePassword'])){
                                         ?>
                                         <div class="alter alert-danger p-2 rounded" >
                                             <h4><?php print($_SESSION['errorUpdatePassword']); ?></h4>
