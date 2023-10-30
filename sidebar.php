@@ -1,7 +1,7 @@
 <div class="brand-link bg-dark p-0 m-0">
     <h1 class="text-center">AIMS</h1>
 </div>
-
+<?php $isAdmin = $_SESSION['userInfo']['isAdmin']; ?>
 <!-- Sidebar -->
 <div class="sidebar">
 
@@ -21,24 +21,32 @@
             
             <!-- Services -->
             <li class="nav-item">
+                <a href="./ubwoko.php" class="nav-link">
+                    <i class="fa fa-bookmark nav-icon"></i>
+                    <p>Ubwoko bw'ibirego</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="./data.php" class="nav-link">
                     <i class="fa fa-file nav-icon"></i>
                     <p>Ibirego</p>
                 </a>
             </li>
+            <?php if($isAdmin == 1){?>
             <li class="nav-item">
                 <a href="./users.php" class="nav-link">
                     <i class="fa fa-users nav-icon"></i>
                     <p>Abakozi</p>
                 </a>
             </li>
+            <?php } ?>
             
             <!-- Settings -->
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fa fa-cog"></i>
                     <p>
-                        Settings
+                        Igenamiterere
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>

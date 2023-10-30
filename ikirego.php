@@ -103,6 +103,8 @@ $userId = $_SESSION['userInfo']['id'];
                                     <div class="px-2">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-12 col-lg-6">
+                                                <h3>Aho baturuka</h3>
+                                                <hr>
                                                 <div>
                                                     <label>Intara</label>
                                                     <input requied type="text" name="intara" placeholder="Kigali city"
@@ -123,22 +125,55 @@ $userId = $_SESSION['userInfo']['id'];
                                                     <input requied type="text" placeholder="Kayenzi" name="akagari"
                                                         class="form-control">
                                                 </div>
+                                                <div>
+                                                    <label>Umudugudu</label>
+                                                    <input requied type="text" placeholder="Muyange" name="umudugudu"
+                                                        class="form-control">
+                                                </div>
                                             </div>
                                             <div class="col-md-6 col-sm-12 col-lg-6">
+                                                <h3>Amakuru y' urega n'uregwa</h3>
+                                                <hr>
                                                 <div>
                                                     <label for="fname">Urega</label>
                                                     <input requied type="text" name="pfname"
                                                         placeholder="CYURINYANA Agnes" class="form-control">
                                                 </div>
                                                 <div>
+                                                    <label for="fname">Phone</label>
+                                                    <input requied type="text" name="phonega" maxlength="10"
+                                                        placeholder="0788800000" class="form-control">
+                                                </div>
+                                                <div>
                                                     <label for="lname">Uregwa</label>
                                                     <input requied type="text" name="dfname"
-                                                        placeholder="KANAMUGIRE Faustin" class="form-control">
+                                                    placeholder="KANAMUGIRE Faustin" class="form-control">
+                                                </div>
+                                                <div>
+                                                    <label for="fname">Phone</label>
+                                                    <input requied type="text" name="phonegwa" maxlength="10"
+                                                        placeholder="0798800000" class="form-control">
                                                 </div>
                                                 <div>
                                                     <label for="email">Umutwe w'ikirego</label>
                                                     <input requied type="text" placeholder="GUKUBITA no GUKOMERETSA"
                                                         name="problem" class="form-control">
+                                                </div>
+                                                <div>
+                                                    <label for="email">Umutwe w'ikirego</label>
+                                                    <select requied name="ubwoko" class="form-control">
+                                                        <option disabled selected>Hitamo ubwoko bw'ikirego</option>
+                                                        <?php 
+                                                        $slt = "SELECT * FROM `ubwoko`";
+                                                        $qry = mysqli_query($conn,$slt);
+                                                        while ($row = mysqli_fetch_array($qry)) {
+                                                            ?>
+                                                        <option value="<?php echo $row["id"]; ?>"><?php echo $row["name"]; ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                       
+                                                    </select>
                                                 </div>
                                             </div>
 

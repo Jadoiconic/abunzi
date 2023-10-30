@@ -2,6 +2,7 @@
 require_once "session.php";
 require_once "./actions/conn.php";
 $userId = $_SESSION['userInfo']['id'];
+$isAdmin = $_SESSION['userInfo']['isAdmin'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,7 @@ $userId = $_SESSION['userInfo']['id'];
     <script src="https://cdn.tiny.cloud/1/jt1gi5f8nvi2bbr4rp708mz9gfmbj8qlfu8s4vm6mezfickq/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-       
+
 </head>
 
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -119,7 +120,12 @@ $userId = $_SESSION['userInfo']['id'];
                                 </thead>
 
                                 <?php
-                                $slt = "SELECT * FROM `ibirego` WHERE `uid`='$userId'";
+                                $sql = "";
+                                if ($isAdmin == 1){
+                                    $slt = "SELECT * FROM `ibirego`";
+                                }else{
+                                    $slt = "SELECT * FROM `ibirego` WHERE `uid`='$userId' ORDER BY id DESC";
+                                }
                                 $n = 1;
                                 $qry = mysqli_query($conn, $slt);
                                 while ($row = mysqli_fetch_array($qry)) {
@@ -138,16 +144,22 @@ $userId = $_SESSION['userInfo']['id'];
                                             <?php print($row['title']) ?>
                                         </td>
                                         <td>
-                                        <a class="btn py-0 btn-primary"
+                                            <a class="btn py-0 btn-primary"
                                                 href="ubusobanuro.php?q=<?php print($row[0]) ?>">Reba ubusobanuro</a>
                                         </td>
                                         <td>
                                             <?php print($row['createdAt']) ?>
                                         </td>
-                                        <td><a class="btn py-0 btn-success"
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                            <a class="btn py-0 btn-success"
+                                                href="sendDoc.php?q=<?php print($row[0]) ?>">Submit</a>
+                                            <a class="btn py-0 btn-success"
                                                 href="updateDoc.php?q=<?php print($row[0]) ?>">Hindura</a>
-                                                <a class="btn py-0 btn-danger"
-                                                href="deleteDoc.php?q=<?php print($row[0]) ?>">Siba</a></td>
+                                            <a class="btn py-0 btn-danger"
+                                                href="deleteDoc.php?q=<?php print($row[0]) ?>">Siba</a>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <?php
                                     $n++;
@@ -173,21 +185,26 @@ $userId = $_SESSION['userInfo']['id'];
                                         <div class="px-2">
                                             <div>
                                                 <label for="fname">Urega</label>
-                                                <input requied type="text" name="pfname" placeholder="CYURINYANA Agnes" class="form-control">
+                                                <input requied type="text" name="pfname" placeholder="CYURINYANA Agnes"
+                                                    class="form-control">
                                             </div>
                                             <div>
                                                 <label for="lname">Uregwa</label>
-                                                <input requied type="text" name="dfname" placeholder="KANAMUGIRE Faustin" class="form-control">
+                                                <input requied type="text" name="dfname"
+                                                    placeholder="KANAMUGIRE Faustin" class="form-control">
                                             </div>
                                             <div>
                                                 <label for="email">Umutwe w'ikirego</label>
-                                                <input requied type="text" placeholder="GUKUBITA no GUKOMERETSA" name="problem" class="form-control">
+                                                <input requied type="text" placeholder="GUKUBITA no GUKOMERETSA"
+                                                    name="problem" class="form-control">
                                             </div>
                                             <div>
                                                 <label for="pass">Ubusobanuro</label>
-                                                <textarea requied name="description" placeholder="CYURINYANA Agnes ararega uwo bashakanye KANAMUGIRE Faustin... " class="form-control">
+                                                <textarea requied name="description"
+                                                    placeholder="CYURINYANA Agnes ararega uwo bashakanye KANAMUGIRE Faustin... "
+                                                    class="form-control">
                                                 </textarea>
-                                                
+
                                                 <script>
                                                     tinymce.init({
                                                         selector: 'textarea',

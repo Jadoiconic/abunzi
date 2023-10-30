@@ -7,11 +7,13 @@ $pass = $_POST['pass'];
 $sql = "SELECT * FROM `users` where email = '$email' AND `status`='1'";
 $qry = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($qry)>0) {
-while ($data = mysqli_fetch_array($qry)) {
-
-        
-        if (password_verify($pass, $data['password'])) {
+if (mysqli_num_rows($qry) > 0) {
+    while ($data = mysqli_fetch_array($qry)) {
+        if (password_verify($pass, $data['password']) && $data['isAdmin'] == 0) {
+            $_SESSION["loginError"] = "Conact Admin to give you access to the system!";
+            header("Location:../login.php");
+            exit();
+        } else if (password_verify($pass, $data['password']) && $data['isAdmin'] > 0) {
             $_SESSION["userInfo"] = $data;
             header("Location:../");
             print("Login Successfuly");

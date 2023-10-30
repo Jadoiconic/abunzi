@@ -1,7 +1,8 @@
 <?php
 require_once "session.php";
 require_once "./actions/conn.php";
-$docId = $_GET['q'];
+$userId = $_SESSION['userInfo']['id'];
+$isAdmin = $_SESSION['userInfo']['isAdmin'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,26 +19,14 @@ $docId = $_GET['q'];
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <script src="https://cdn.tiny.cloud/1/jt1gi5f8nvi2bbr4rp708mz9gfmbj8qlfu8s4vm6mezfickq/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
-        <style type = "text/css">
-      @media screen {
-         .card {font-family:verdana, arial, sans-serif;}
-      }
+    
 
-      @media print {
-         .card {font-family:georgia, times, serif;}
-      }
-      @media screen, print {
-         .card {font-size:10pt}
-      }
-</style>
 </head>
 
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -108,41 +97,91 @@ $docId = $_GET['q'];
                     <!-- Main row -->
                     <div class="row">
 
-                        <div class="card">
+                        <div class="col-md-12">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div></div>
+                                <div><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        Ongera ubwoko
+                                    </button></div>
+                            </div>
                             <!-- Info Boxes Style 2 -->
-                            
-
+                            <table id="myTable" class="table nowrap">
+                                <thead class="bg-info">
+                                   
+                                        <th>N<sup>o</sup></th>
+                                        <th>Ubwoko</th>
+                                        <?php if ($isAdmin == 1) {
+                                            ?>
+                                            <th>Actions</th>
+                                        <?php } ?>
+                                    
+                                </thead>
+                                <tbody>
                                 <?php
-                                $slt = "SELECT * FROM `ibirego` WHERE `id`='$docId'";
+                                $slt = "SELECT * FROM `ubwoko`";
                                 $n = 1;
                                 $qry = mysqli_query($conn, $slt);
                                 while ($row = mysqli_fetch_array($qry)) {
                                     ?>
-                                    <b class="card-header">
-                                    Intara: <?php print($row['intara']) ?> <br>
-                                    akarere: <?php print($row['akarere']) ?><br>
-                                    umurenge: <?php print($row['umurenge']) ?><br>
-                                    Akagari: <?php print($row['akagari']) ?> <br>
-                                    Umudugu: <?php print($row['umudugudu']) ?> <br>
-                                    Date: <?php print($row['createdAt']) ?> <br><br>
-                                </b>
-                                   <p> <b><u>Imamvu</u>: </b> <?php print($row['title']) ?> <br><br></p>
-                                    
-                                            <?php print($row['description']) ?>
-                                        
+                                    <tr>
+                                        <td>
+                                            <?php print($n) ?>
+                                        </td>
+                                        <td>
+                                            <?php print($row['name']) ?>
+                                        </td>
+                                        <?php if ($isAdmin == 1) {
+                                            ?>
+                                            <td>
+                                            <div class="btn btn-group">
+                                                <a class="btn py-0 btn-success"
+                                                        href="updateCategory.php?q=<?php print($row[0]) ?>">Hindura</a>
+                                                <a class="btn py-0 btn-danger"
+                                                    href="deleteCategory.php?q=<?php print($row[0]) ?>">Siba</a>
+                                            </div>
+                                            </td>
+                                            <?php
+                                        } ?>
+                                    </tr>
                                     <?php
                                     $n++;
                                 }
                                 ?>
-                                <div class="card-footer  d-flex justify-content-end">
-                                    <button type="button" class="btn btn-primary" onclick="window.print()">Print</button>
-                                </div>
+                                </tbody>
+                            </table>
                         </div>
                         <!-- /.col -->
                     </div>
-                    <!-- /.row -->
                     <!-- Modal -->
-                    
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Ongera Ubwoko</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <form action="./actions/registerCategory.php" method="post">
+                                    <div class="modal-body">
+                                        <div class="px-2">
+                                            <div>
+                                                <label for="fname">Ubwoko</label>
+                                                <input requied type="text" placeholder="Ubujura / Amakimbirane mu muryango " name="name" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Funga</button>
+                                        <button type="submit" class="btn btn-primary">Emeza</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
                 </div>
                 <!--/. container-fluid -->
             </section>
@@ -163,6 +202,7 @@ $docId = $_GET['q'];
 
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
+
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -184,6 +224,12 @@ $docId = $_GET['q'];
         crossorigin="anonymous"></script>
 
     <script src="dist/js/pages/dashboard2.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
 </body>
 
 </html>

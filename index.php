@@ -4,9 +4,14 @@ require_once "./actions/conn.php";
 $sql = "SELECT * FROM `users`";
 $qry = mysqli_query($conn, $sql);
 $countUsers = mysqli_num_rows($qry);
+
 $sqli = "SELECT * FROM `ibirego`";
 $qryi = mysqli_query($conn, $sqli);
 $countIbirego = mysqli_num_rows($qryi);
+
+$sqlcat = "SELECT * FROM `ubwoko`";
+$qrycat = mysqli_query($conn, $sqli);
+$countCategory = mysqli_num_rows($qryi);
 
 ?>
 <!DOCTYPE html>
@@ -27,6 +32,7 @@ $countIbirego = mysqli_num_rows($qryi);
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -56,8 +62,6 @@ $countIbirego = mysqli_num_rows($qryi);
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
-
-
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -104,28 +108,53 @@ $countIbirego = mysqli_num_rows($qryi);
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Abakoresha</span>
-                                    <span class="info-box-number"><?php print($countUsers) ?></span>
+                                    <span class="info-box-number">
+                                        <?php print($countUsers) ?>
+                                    </span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
                             <!-- /.info-box -->
-                            <div class="info-box mb-3 bg-success  mx-1">
+                            <div class="info-box mb-3 bg-primary  mx-1">
                                 <span class="info-box-icon"><i class="far fa-file"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">ibirego</span>
-                                    <span class="info-box-number"><?php print($countIbirego) ?></span>
+                                    <span class="info-box-number">
+                                        <?php print($countIbirego) ?>
+                                    </span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
                             <!-- /.info-box -->
                             <!-- /.info-box -->
-                            
+                            <div class="info-box mb-3 bg-success  mx-1">
+                                <span class="info-box-icon"><i class="far fa-tag"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Ubwoko</span>
+                                    <span class="info-box-number">
+                                        <?php print($countCategory) ?>
+                                    </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                            <!-- /.info-box -->
+
 
                         </div>
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
+                    <div class="row">
+                        <div class="col-md-8 col-sm-12">
+                            <canvas id="myBarChart" width="400" height="250"></canvas>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <canvas id="myDoughnutChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
                 </div>
                 <!--/. container-fluid -->
             </section>
@@ -146,6 +175,83 @@ $countIbirego = mysqli_num_rows($qryi);
 
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
+    <script>
+        // Data for the doughnut chart
+        fetch('http://localhost/aims/analitics.php')
+            .then(response => response.json())
+            .then(data => {
+                var labels = data.map(item => item.name);
+                var values = data.map(item => item.ubwoko);
+
+                var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+                var myPieChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: values,
+                            backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(123, 202, 255, 1)', 'rgba(103, 100, 200, 1)']
+                        },
+                        ]
+                    },
+                    options: {
+                        cutoutPercentage: 80,
+                    }
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+    <script>
+        fetch('http://localhost/aims/analitics.php')
+            .then(response => response.json())
+            .then(data => {
+                var labels = data.map(item => item.name);
+                var values = data.map(item => item.ubwoko);
+
+                var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+                var data = {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Umubare w\'ibirego',
+                        data: values,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                };
+                var ctx = document.getElementById('myBarChart').getContext('2d');
+
+        // Create the bar chart
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true // Y-axis starts from 0
+                    }
+                }
+            }
+        });
+            })
+            .catch(error => console.error('Error:', error));
+
+
+        // Get the canvas element
+        
+    </script>
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

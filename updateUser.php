@@ -114,8 +114,10 @@
                                             <label for="pass">Admin status</label>
                                             <select name="isAdmin" class="form-control">
                                                 <option value="<?php print($data['isAdmin'])?>"> <?php print($data['isAdmin'] == 1 ? 'Admin' : 'Not Admin')?></option>
-                                                <option value="0">Not Admin</option>
-                                                <option value="1">Admin</option>
+                                                    <option value="1">Umwunzi</option>
+                                                    <option value="2">Civil servant(Akarere)</option>
+                                                    <option value="3">Civil servant(Umurenge)</option>
+                                                    <option value="4">Judge</option>
                                             </select>
                                         </div>
                                     </div>

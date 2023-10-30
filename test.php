@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +14,7 @@
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
 
-<section class="h-100 m-0" style="background-color: #eee;">
+<section class="h-100 row" style="background-color: #eee;">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-10">
@@ -70,7 +69,9 @@
             <div class="col-lg-6 d-flex align-items-center bg-info">
               <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                 <h4 class="mb-4">Abunzi Information Management System</h4>
-                <p class="small mb-0">.</p>
+                <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
               </div>
             </div>
           </div>

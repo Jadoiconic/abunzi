@@ -25,7 +25,7 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
-    
+
 
 </head>
 
@@ -102,72 +102,80 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                 <div></div>
                                 <div><button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
-                                        Add New User
+                                        Ongera Umukozi
                                     </button></div>
                             </div>
                             <!-- Info Boxes Style 2 -->
                             <table id="myTable" class="table nowrap">
                                 <thead class="bg-info">
-                                   
-                                        <th>N<sup>o</sup></th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email</th>
-                                        <th>Status</th>
-                                        <th>createdAt</th>
-                                        <th>UpdatedAt</th>
-                                        <?php if ($isAdmin == 1) {
-                                            ?>
-                                            <th>Actions</th>
-                                        <?php } ?>
-                                    
+
+                                    <th>N<sup>o</sup></th>
+                                    <th>Izina Ribanza</th>
+                                    <th>Izina ryakabiri</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Byakozwe</th>
+                                    <th>Icyo akora</th>
+                                    <?php if ($isAdmin == 1) {
+                                        ?>
+                                        <th>Ibikorwa</th>
+                                    <?php } ?>
+
                                 </thead>
                                 <tbody>
-                                <?php
-                                $slt = "SELECT * FROM `users`";
-                                $n = 1;
-                                $qry = mysqli_query($conn, $slt);
-                                while ($row = mysqli_fetch_array($qry)) {
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <?php print($n) ?>
-                                        </td>
-                                        <td>
-                                            <?php print($row['fname']) ?>
-                                        </td>
-                                        <td>
-                                            <?php print($row['lname']) ?>
-                                        </td>
-                                        <td>
-                                            <?php print($row['email']) ?>
-                                        </td>
-                                        <td>
-                                            <?php print($row['status'] == 1 ? 'Active' : 'Inactive') ?>
-                                        </td>
-                                        <td>
-                                            <?php print($row['createdAt']) ?>
-                                        </td>
-                                        <td>
-                                            <?php print($row['updatedAt']) ?>
-                                        </td>
-                                        <?php if ($isAdmin == 1) {
-                                            ?>
-                                            <td>
-                                            <div class="btn btn-group">
-                                                <a class="btn py-0 btn-success"
-                                                        href="updateUser.php?q=<?php print($row[0]) ?>">Update</a>
-                                                <a class="btn py-0 btn-danger"
-                                                    href="deleteUser.php?q=<?php print($row[0]) ?>">Delete</a>
-                                            </div>
-                                            </td>
-                                            <?php
-                                        } ?>
-                                    </tr>
                                     <?php
-                                    $n++;
-                                }
-                                ?>
+                                    $slt = "SELECT * FROM `users`";
+                                    $n = 1;
+                                    $qry = mysqli_query($conn, $slt);
+                                    while ($row = mysqli_fetch_array($qry)) {
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <?php print($n) ?>
+                                            </td>
+                                            <td>
+                                                <?php print($row['fname']) ?>
+                                            </td>
+                                            <td>
+                                                <?php print($row['lname']) ?>
+                                            </td>
+                                            <td>
+                                                <?php print($row['email']) ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($row['isAdmin'] == 1) {
+                                                    print 'Umwunzi';
+                                                } else if (($row['isAdmin'] == 2)) {
+                                                    print 'Umucamanza';
+                                                } else {
+                                                    print 'Umukozi wa Leta';
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php print($row['status'] == 1 ? 'Active' : 'Inactive') ?>
+                                            </td>
+                                            <td>
+                                                <?php print($row['createdAt']) ?>
+                                            </td>
+                                            <?php if ($isAdmin == 1) {
+                                                ?>
+                                                <td>
+                                                    <div class="btn btn-group">
+                                                        <a class="btn py-0 btn-success"
+                                                            href="updateUser.php?q=<?php print($row[0]) ?>">Update</a>
+                                                        <a class="btn py-0 btn-danger"
+                                                            href="deleteUser.php?q=<?php print($row[0]) ?>">Delete</a>
+                                                    </div>
+                                                </td>
+                                                <?php
+                                            } ?>
+                                        </tr>
+                                        <?php
+                                        $n++;
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -179,7 +187,7 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Ongera umukozi</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -187,11 +195,11 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                     <div class="modal-body">
                                         <div class="px-2">
                                             <div>
-                                                <label for="fname">First Name</label>
+                                                <label for="fname">Izina Ribanza</label>
                                                 <input requied type="text" name="fname" class="form-control">
                                             </div>
                                             <div>
-                                                <label for="lname">Last Name</label>
+                                                <label for="lname">Izina ryakabiri</label>
                                                 <input requied type="text" name="lname" class="form-control">
                                             </div>
                                             <div>
@@ -199,14 +207,17 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                                 <input requied type="email" name="email" class="form-control">
                                             </div>
                                             <div>
-                                                <label for="pass">Password</label>
+                                                <label for="pass">Ijambobanga</label>
                                                 <input requied type="password" name="pass" class="form-control">
                                             </div>
                                             <div>
-                                                <label for="pass">Admin status</label>
-                                                <select name="isAdmin" class="form-control">
-                                                    <option value="0">Not Admin</option>
-                                                    <option value="1">Admin</option>
+                                                <label for="pass">Icyo akora</label>
+                                                <select name="isAdmin" required class="form-control">
+                                                    <option disabled>Select option</option>
+                                                    <option value="1">Umwunzi</option>
+                                                    <option value="2">Civil servant(Akarere)</option>
+                                                    <option value="3">Civil servant(Umurenge)</option>
+                                                    <option value="4">Judge</option>
                                                 </select>
                                             </div>
                                         </div>

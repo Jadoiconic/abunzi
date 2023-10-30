@@ -1,8 +1,6 @@
-<?php
-require_once "session.php";
-require_once "./actions/conn.php";
-$docId = $_GET['q'];
-?>
+<?php require_once "session.php"; ?>
+<?php require_once "./actions/conn.php"; ?>
+<?php $docId = $_GET['q']; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,33 +9,16 @@ $docId = $_GET['q'];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Abunzi Information Management System</title>
 
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <script src="https://cdn.tiny.cloud/1/jt1gi5f8nvi2bbr4rp708mz9gfmbj8qlfu8s4vm6mezfickq/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
-
-        <style type = "text/css">
-      @media screen {
-         .card {font-family:verdana, arial, sans-serif;}
-      }
-
-      @media print {
-         .card {font-family:georgia, times, serif;}
-      }
-      @media screen, print {
-         .card {font-size:10pt}
-      }
-</style>
 </head>
 
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -108,41 +89,30 @@ $docId = $_GET['q'];
                     <!-- Main row -->
                     <div class="row">
 
-                        <div class="card">
-                            <!-- Info Boxes Style 2 -->
-                            
+                        <?php
+                        $sql = "SELECT *FROM ubwoko WHERE id='$docId'";
+                        $qry = mysqli_query($conn, $sql);
+                        while ($data = mysqli_fetch_array($qry)) { ?>
 
-                                <?php
-                                $slt = "SELECT * FROM `ibirego` WHERE `id`='$docId'";
-                                $n = 1;
-                                $qry = mysqli_query($conn, $slt);
-                                while ($row = mysqli_fetch_array($qry)) {
-                                    ?>
-                                    <b class="card-header">
-                                    Intara: <?php print($row['intara']) ?> <br>
-                                    akarere: <?php print($row['akarere']) ?><br>
-                                    umurenge: <?php print($row['umurenge']) ?><br>
-                                    Akagari: <?php print($row['akagari']) ?> <br>
-                                    Umudugu: <?php print($row['umudugudu']) ?> <br>
-                                    Date: <?php print($row['createdAt']) ?> <br><br>
-                                </b>
-                                   <p> <b><u>Imamvu</u>: </b> <?php print($row['title']) ?> <br><br></p>
-                                    
-                                            <?php print($row['description']) ?>
-                                        
-                                    <?php
-                                    $n++;
-                                }
-                                ?>
-                                <div class="card-footer  d-flex justify-content-end">
-                                    <button type="button" class="btn btn-primary" onclick="window.print()">Print</button>
+                            <form action="./actions/handleUpdateCategory.php" method="post" class="col-md-6 col-sm-12">
+                                <div class="modal-body">
+                                    <div class="px-2">
+                                        <div>
+                                            <label for="fname">Ubwoko</label>
+                                            <input requied type="text" name="name" value="<?php print($data['name'])?>" class="form-control">
+                                            <input requied type="hidden" name="id" value="<?php print($data['id'])?>" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
-                        </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Bika</button>
+                                </div>
+                            </form>
+                        <?php } ?>
+
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
-                    <!-- Modal -->
-                    
                 </div>
                 <!--/. container-fluid -->
             </section>
@@ -179,9 +149,6 @@ $docId = $_GET['q'];
     <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
     <!-- ChartJS -->
     <script src="plugins/chart.js/Chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
 
     <script src="dist/js/pages/dashboard2.js"></script>
 </body>
