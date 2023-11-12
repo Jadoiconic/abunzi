@@ -24,8 +24,7 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <script src="https://cdn.tiny.cloud/1/jt1gi5f8nvi2bbr4rp708mz9gfmbj8qlfu8s4vm6mezfickq/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
+   
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
 </head>
@@ -101,9 +100,13 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                         <div class="col-md-12">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div></div>
-                                <div><a href="ikirego.php" class="btn btn-primary">
+                                <div>
+                                <?php if($isAdmin == 1){?>
+                                    <a href="ikirego.php" class="btn btn-primary">
                                         Ongera Ikirego
-                                    </a></div>
+                                    </a>
+                                    <?php } ?>
+                                </div>
                             </div>
                             <!-- Info Boxes Style 2 -->
                             <table class="table" id="myTable">
@@ -113,7 +116,7 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                         <td>Urega</td>
                                         <td>Uregwa</td>
                                         <td>Umutwe W'ikirego</td>
-                                        <td>Ubusobanuro bw'ikirego</td>
+                                        <td>Imyanzuro</td>
                                         <td>Byakozwe</td>
                                         <td>Actions</td>
                                     </tr>
@@ -122,9 +125,11 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                 <?php
                                 $sql = "";
                                 if ($isAdmin == 1){
-                                    $slt = "SELECT * FROM `ibirego`";
-                                }else{
-                                    $slt = "SELECT * FROM `ibirego` WHERE `uid`='$userId' ORDER BY id DESC";
+                                    $slt = "SELECT * FROM `ibirego` ORDER BY id DESC";
+                                }elseif ($isAdmin == 2){
+                                    $slt = "SELECT * FROM `ibirego` WHERE  `access_level`='1' ORDER BY id DESC";
+                                }elseif ($isAdmin == 3){
+                                    $slt = "SELECT * FROM `ibirego2` WHERE  `access_level`='2' ORDER BY id DESC";
                                 }
                                 $n = 1;
                                 $qry = mysqli_query($conn, $slt);
@@ -145,17 +150,17 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                         </td>
                                         <td>
                                             <a class="btn py-0 btn-primary"
-                                                href="ubusobanuro.php?q=<?php print($row[0]) ?>">Reba ubusobanuro</a>
+                                                href="ubusobanuro.php?q=<?php print($row[0]) ?>">Reba Umwanzuro</a>
                                         </td>
                                         <td>
                                             <?php print($row['createdAt']) ?>
                                         </td>
                                         <td>
                                             <div class="d-flex gap-1">
+                                            <?php if($isAdmin == 1){?> <a class="btn py-0 btn-success"
+                                                href="sendDoc.php?q=<?php print($row[0]) ?>">Submit</a><?php }?>
                                             <a class="btn py-0 btn-success"
-                                                href="sendDoc.php?q=<?php print($row[0]) ?>">Submit</a>
-                                            <a class="btn py-0 btn-success"
-                                                href="updateDoc.php?q=<?php print($row[0]) ?>">Hindura</a>
+                                                href="updateDoc.php?q=<?php print($row[0]) ?>"><?php if($isAdmin == 1){print('Hindura');}else{print('Tanga umwanzuro');}?></a>
                                             <a class="btn py-0 btn-danger"
                                                 href="deleteDoc.php?q=<?php print($row[0]) ?>">Siba</a>
                                             </div>

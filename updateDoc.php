@@ -103,39 +103,39 @@
                                             <div class="col-md-6 col-sm-12 col-lg-6">
                                                 <div>
                                                     <label>Intara</label>
-                                                    <input requied type="text" name="intara" value="<?php print($data['intara'])?>"
+                                                    <input requied type="text" <?php if($isAdmin == 1){}else{print('disabled');} ?> name="intara" value="<?php print($data['intara'])?>"
                                                         class="form-control">
                                                 </div>
                                                 <div>
                                                     <label>Akarere</label>
-                                                    <input requied type="text" name="akarere" value="<?php print($data['akarere'])?>"
+                                                    <input requied type="text" <?php if($isAdmin == 1){}else{print('disabled');} ?> name="akarere" value="<?php print($data['akarere'])?>"
                                                         class="form-control">
                                                 </div>
                                                 <div>
                                                     <label>Umurenge</label>
-                                                    <input requied type="text" value="<?php print($data['umurenge'])?>" name="umurenge"
+                                                    <input requied type="text" <?php if($isAdmin == 1){}else{print('disabled');} ?> value="<?php print($data['umurenge'])?>" name="umurenge"
                                                         class="form-control">
                                                 </div>
                                                 <div>
                                                     <label>Akagari</label>
-                                                    <input requied type="text" value="<?php print($data['akagari'])?>" name="akagari"
+                                                    <input requied type="text" <?php if($isAdmin == 1){}else{print('disabled');} ?> value="<?php print($data['akagari'])?>" name="akagari"
                                                         class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-sm-12 col-lg-6">
                                                 <div>
                                                     <label for="fname">Urega</label>
-                                                    <input requied type="text" name="pfname"
+                                                    <input requied type="text" <?php if($isAdmin == 1){}else{print('disabled');} ?> name="pfname"
                                                         value="<?php print($data['ownder'])?>" class="form-control">
                                                 </div>
                                                 <div>
                                                     <label for="lname">Uregwa</label>
-                                                    <input requied type="text" name="dfname"
+                                                    <input requied type="text" <?php if($isAdmin == 1){}else{print('disabled');} ?> name="dfname"
                                                         value="<?php print($data['defender'])?>" class="form-control">
                                                 </div>
                                                 <div>
                                                     <label for="email">Umutwe w'ikirego</label>
-                                                    <input requied type="text" value="<?php print($data['title'])?>"
+                                                    <input requied type="text" <?php if($isAdmin == 1){}else{print('disabled');} ?> value="<?php print($data['title'])?>"
                                                         name="problem" class="form-control">
                                                 </div>
                                             </div>
@@ -146,26 +146,18 @@
                                             <textarea requied name="description" class="form-control"><?php print($data['description'])?>
                                                     </textarea>
                                                     <script>
-                                                    tinymce.init({
-                                                        selector: 'textarea',
-                                                        plugins: 'ai tinycomments mentions anchor autolink charmap link lists table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography',
-                                                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link table mergetags | align lineheight | checklist numlist bullist indent outdent | removeformat',
-                                                        tinycomments_mode: 'embedded',
-                                                        tinycomments_author: 'Author name',
-                                                        mergetags_list: [
-                                                            { value: 'First.Name', title: 'First Name' },
-                                                            { value: 'Email', title: 'Email' },
-                                                        ],
-                                                        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant"))
-                                                    });
-                                                </script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: 'anchor autolink charmap codesample emoticons  link lists searchreplace table visualblocks wordcount',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link  table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+  });
+</script>
                                         </div>
                                         <input type="hidden" name="id" value="<?php print($data['id']) ?>">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" class="btn btn-primary">Bika</button>
                                 </div>
                             </form>
                         <?php } ?>

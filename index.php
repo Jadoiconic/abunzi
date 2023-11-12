@@ -1,5 +1,5 @@
-<?php require_once "session.php" ?>
-<?php
+<?php 
+require_once "session.php";
 require_once "./actions/conn.php";
 $sql = "SELECT * FROM `users`";
 $qry = mysqli_query($conn, $sql);
@@ -21,7 +21,6 @@ $countCategory = mysqli_num_rows($qryi);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Abunzi Information Management System</title>
-
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -182,7 +181,6 @@ $countCategory = mysqli_num_rows($qryi);
             .then(data => {
                 var labels = data.map(item => item.name);
                 var values = data.map(item => item.ubwoko);
-
                 var ctx = document.getElementById('myDoughnutChart').getContext('2d');
                 var myPieChart = new Chart(ctx, {
                     type: 'doughnut',
@@ -195,7 +193,7 @@ $countCategory = mysqli_num_rows($qryi);
                         ]
                     },
                     options: {
-                        cutoutPercentage: 80,
+                        cutoutPercentage: 90,
                     }
                 });
             })
@@ -249,7 +247,7 @@ $countCategory = mysqli_num_rows($qryi);
             .catch(error => console.error('Error:', error));
 
 
-        // Get the canvas element
+        // Get the canvas element 
         
     </script>
     <script src="plugins/jquery/jquery.min.js"></script>

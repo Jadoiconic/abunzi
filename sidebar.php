@@ -26,13 +26,15 @@
                     <p>Ubwoko bw'ibirego</p>
                 </a>
             </li>
+            <?php if($isAdmin != 0){?>
             <li class="nav-item">
                 <a href="./data.php" class="nav-link">
                     <i class="fa fa-file nav-icon"></i>
                     <p>Ibirego</p>
                 </a>
             </li>
-            <?php if($isAdmin == 1){?>
+            <?php } ?>
+            <?php if($isAdmin == 0){?>
             <li class="nav-item">
                 <a href="./users.php" class="nav-link">
                     <i class="fa fa-users nav-icon"></i>

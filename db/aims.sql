@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 23, 2023 at 01:45 PM
+-- Generation Time: Oct 26, 2023 at 04:38 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -48,13 +48,12 @@ CREATE TABLE `ibirego` (
 --
 
 INSERT INTO `ibirego` (`id`, `ownder`, `defender`, `title`, `uid`, `description`, `status`, `updatedAt`, `createdAt`, `intara`, `akarere`, `umurenge`, `akagari`) VALUES
-(1, 'kamiri', 'rugira', 'umutekano', 1, '<p>dkjdskd</p>', 1, '2023-10-23 11:32:25', '2023-10-16 07:13:51', 'Amajyaruguru', 'Gakenke', 'Busing', 'Rehang'),
+(1, 'kamiri', 'rugira', 'umutekano', 1, '<p>I am writing to provide a comprehensive report on the mediation process between<strong> RWAGASANA Ernest</strong> and <strong>MUNYERAGWE Honnette</strong>. The purpose of this mediation was to address and resolve the dispute concerning.</p>', 1, '2023-10-23 11:49:31', '2023-10-16 07:13:51', 'Amajyaruguru', 'Gakenke', 'Busengo', 'Ruhanga'),
 (2, 'mahoro', 'mugabe', 'Yes', 1, 'Hindura imitekerereze', 1, '2023-10-18 02:37:09', '2023-10-16 07:13:51', '', '', '', ''),
 (3, 'Musezero', 'Makangwa', 'Tell me', 1, 'Tuza ibintu byose biraza kugenda neza                                                    ', 1, '2023-10-18 02:36:42', '2023-10-16 18:35:07', '', '', '', ''),
 (5, 'Rugwiro', 'Marc', 'Amakimbirane mumuryango', 3, '             jsskhjfhsdk cjfks ksjskhfsns jdskjskiuh skfjsknsdcoijsnskuhsnvns shs,os nhiondhsfhos uhoisnos                                    ', 1, NULL, '2023-10-16 19:05:52', '', '', '', ''),
-(10, 'sdfhaj', 'dsfads', 'fades', 1, '<p>hdkjahfkja djkahdjkfahd fdsafhjkahdf</p>', 1, NULL, '2023-10-22 23:32:22', '', '', '', ''),
-(11, 'fgfd', 'svfs', 'dfgdg', 1, '<p>jfskjgdfk</p>\r\n<p><strong>fdgfdlkfd</strong></p>\r\n<p>&nbsp;</p>\r\n<p>fdgdf</p>', 1, NULL, '2023-10-22 23:33:00', '', '', '', ''),
-(12, 'Mugiraneza', 'John', 'Amakimbirane mu muryango', 1, '<table style=\"border-collapse: collapse; width: 100%;\" border=\"1\"><colgroup><col style=\"width: 24.879227%;\"><col style=\"width: 24.879227%;\"><col style=\"width: 24.879227%;\"><col style=\"width: 24.879227%;\"></colgroup>\r\n<tbody>\r\n<tr>\r\n<td>col1</td>\r\n<td>col2</td>\r\n<td>col3</td>\r\n<td>col4</td>\r\n</tr>\r\n<tr>\r\n<td>sjdksj</td>\r\n<td>kdsjk</td>\r\n<td>fjdksk</td>\r\n<td>fjdks</td>\r\n</tr>\r\n</tbody>\r\n</table>                                                    ', 1, '2023-10-23 00:43:17', '2023-10-22 23:35:34', '', '', '', '');
+(12, 'Mugiraneza', 'John', 'Amakimbirane mu muryango', 1, '<table style=\"border-collapse: collapse; width: 100%;\" border=\"1\"><colgroup><col style=\"width: 24.879227%;\"><col style=\"width: 24.879227%;\"><col style=\"width: 24.879227%;\"><col style=\"width: 24.879227%;\"></colgroup>\r\n<tbody>\r\n<tr>\r\n<td>col1</td>\r\n<td>col2</td>\r\n<td>col3</td>\r\n<td>col4</td>\r\n</tr>\r\n<tr>\r\n<td>sjdksj</td>\r\n<td>kdsjk</td>\r\n<td>fjdksk</td>\r\n<td>fjdks</td>\r\n</tr>\r\n</tbody>\r\n</table>                                                    ', 1, '2023-10-23 00:43:17', '2023-10-22 23:35:34', '', '', '', ''),
+(13, 'MUHIZI Theo', 'RUKARA Devotha', 'Amakimbirane mu muryango', 1, '<p>MUHIZI Theo ararega RUKARA Devotha ko yamurengereye kwisambu badikanyije</p>', 1, '2023-10-23 12:54:31', '2023-10-23 12:53:40', 'Uburengerazuba', 'Rubavu', 'Gisenyi', 'Gisenyi');
 
 -- --------------------------------------------------------
 
@@ -108,7 +107,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `ibirego`
 --
 ALTER TABLE `ibirego`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`

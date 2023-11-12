@@ -70,7 +70,7 @@
             <div class="col-lg-6 d-flex align-items-center bg-info">
               <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                 <h4 class="mb-4">Abunzi Information Management System</h4>
-                <p class="small mb-0">.</p>
+                <p class="small mb-0"></p>
               </div>
             </div>
           </div>
