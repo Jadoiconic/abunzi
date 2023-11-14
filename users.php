@@ -116,7 +116,7 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                     <th>Status</th>
                                     <th>Byakozwe</th>
                                     <th>Icyo akora</th>
-                                    <?php if ($isAdmin == 1) {
+                                    <?php if ($isAdmin == 0) {
                                         ?>
                                         <th>Ibikorwa</th>
                                     <?php } ?>
@@ -144,12 +144,16 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                             </td>
                                             <td>
                                                 <?php
-                                                if ($row['isAdmin'] == 1) {
-                                                    print 'Umwunzi';
+                                                if ($row['isAdmin'] == 0) {
+                                                    print 'Admin';
+                                                } else if (($row['isAdmin'] == 1)) {
+                                                    print 'Gitifu(akagari)';
                                                 } else if (($row['isAdmin'] == 2)) {
-                                                    print 'Umucamanza';
+                                                    print 'Abunzi(akagari)';
+                                                } else if (($row['isAdmin'] == 1)) {
+                                                    print 'Gitifu(Umurenge)';
                                                 } else {
-                                                    print 'Umukozi wa Leta';
+                                                    print 'Abunzi(Umurenge)';
                                                 }
                                                 ?>
                                             </td>
@@ -159,7 +163,7 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                             <td>
                                                 <?php print($row['createdAt']) ?>
                                             </td>
-                                            <?php if ($isAdmin == 1) {
+                                            <?php if ($isAdmin == 0) {
                                                 ?>
                                                 <td>
                                                     <div class="btn btn-group">
@@ -207,6 +211,10 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                                 <input requied type="email" name="email" class="form-control">
                                             </div>
                                             <div>
+                                            <label for="phone">Phone</label>
+                                            <input requied type="text" name="phone" class="form-control">
+                                        </div>
+                                            <div>
                                                 <label for="pass">Ijambobanga</label>
                                                 <input requied type="password" name="pass" class="form-control">
                                             </div>
@@ -214,18 +222,16 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                                 <label for="pass">Icyo akora</label>
                                                 <select name="isAdmin" required class="form-control">
                                                     <option disabled>Select option</option>
-                                                    <option value="1">Umwunzi</option>
-                                                    <option value="2">Civil servant(Akarere)</option>
-                                                    <option value="3">Civil servant(Umurenge)</option>
-                                                    <option value="4">Judge</option>
+                                                    <option value="1">Gitifu (akagari)</option>
+                                                    <option value="2">Abunzi Mukagari</option>
+                                                    <option value="3">Gitifu (Umurenge)</option>
+                                                    <option value="4">Abunzi</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="submit" class="btn btn-primary">Bika</button>
                                     </div>
                                 </form>
                             </div>

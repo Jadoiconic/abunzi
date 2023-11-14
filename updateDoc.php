@@ -143,6 +143,12 @@
                                         </div>
                                         <div>
                                             <label for="pass">Ubusobanuro</label>
+                                            <p>
+                                            <?php print($data['ishamake'])?>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <label for="pass">Umanzuro</label>
                                             <textarea requied name="description" class="form-control"><?php print($data['description'])?>
                                                     </textarea>
                                                     <script>

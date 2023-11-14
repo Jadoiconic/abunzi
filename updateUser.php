@@ -111,20 +111,33 @@
                                             <input requied type="text" name="email"  value="<?php print($data['email'])?>" class="form-control">
                                         </div>
                                         <div>
+                                            <label for="phone">Phone</label>
+                                            <input requied type="text" name="phone"  value="<?php print($data['phone'])?>" class="form-control">
+                                        </div>
+                                        <div>
                                             <label for="pass">Admin status</label>
                                             <select name="isAdmin" class="form-control">
-                                                <option value="<?php print($data['isAdmin'])?>"> <?php print($data['isAdmin'] == 1 ? 'Admin' : 'Not Admin')?></option>
-                                                    <option value="1">Umwunzi</option>
-                                                    <option value="2">Civil servant(Akarere)</option>
-                                                    <option value="3">Civil servant(Umurenge)</option>
-                                                    <option value="4">Judge</option>
+                                                <option value="1">Umwunzi</option>
+                                                <option value="2">Civil servant(Akarere)</option>
+                                                <option value="3">Civil servant(Umurenge)</option>
+                                                <option value="4">Judge</option>
                                             </select>
+                                            <div>
+                                                <label for="pass">Icyo akora</label>
+                                                <select name="isAdmin" required class="form-control">
+                                                    <option value="<?php print($data['isAdmin'])?>"> <?php print($data['isAdmin'] == 0 ? 'Admin' : 'Not Admin')?></option>
+                                                    <option value="0">Make Admin</option>
+                                                    <option value="1">Gitifu (akagari)</option>
+                                                    <option value="2">Abunzi Mukagari</option>
+                                                    <option value="3">Gitifu (Umurenge)</option>
+                                                    <option value="4">Abunzi</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" class="btn btn-primary">Bika Impinduka</button>
                                 </div>
                             </form>
                         <?php } ?>

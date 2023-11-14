@@ -126,10 +126,14 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                 $sql = "";
                                 if ($isAdmin == 1){
                                     $slt = "SELECT * FROM `ibirego` ORDER BY id DESC";
-                                }elseif ($isAdmin == 2){
+                                }elseif ($isAdmin == 1){
                                     $slt = "SELECT * FROM `ibirego` WHERE  `access_level`='1' ORDER BY id DESC";
+                                }elseif ($isAdmin == 2){
+                                    $slt = "SELECT * FROM `ibirego` WHERE  `access_level`='2' ORDER BY id DESC";
                                 }elseif ($isAdmin == 3){
-                                    $slt = "SELECT * FROM `ibirego2` WHERE  `access_level`='2' ORDER BY id DESC";
+                                    $slt = "SELECT * FROM `ibirego` WHERE  `access_level`='3' ORDER BY id DESC";
+                                }elseif ($isAdmin == 4){
+                                    $slt = "SELECT * FROM `ibirego2` WHERE  `access_level`='4' ORDER BY id DESC";
                                 }
                                 $n = 1;
                                 $qry = mysqli_query($conn, $slt);
@@ -158,11 +162,13 @@ $isAdmin = $_SESSION['userInfo']['isAdmin'];
                                         <td>
                                             <div class="d-flex gap-1">
                                             <?php if($isAdmin == 1){?> <a class="btn py-0 btn-success"
-                                                href="sendDoc.php?q=<?php print($row[0]) ?>">Submit</a><?php }?>
+                                                href="sendDocs.php?q=<?php print($row[0]) ?>">Tumira_Abunzi</a><?php }?>
+                                            <?php if($isAdmin == 1){?> <a class="btn py-0 btn-success"
+                                                href="sendDoc.php?q=<?php print($row[0]) ?>">Rometa</a><?php }?>
                                             <a class="btn py-0 btn-success"
                                                 href="updateDoc.php?q=<?php print($row[0]) ?>"><?php if($isAdmin == 1){print('Hindura');}else{print('Tanga umwanzuro');}?></a>
-                                            <a class="btn py-0 btn-danger"
-                                                href="deleteDoc.php?q=<?php print($row[0]) ?>">Siba</a>
+                                                <?php if($isAdmin == 1){?> <a class="btn py-0 btn-danger"
+                                                href="deleteDoc.php?q=<?php print($row[0]) ?>">Siba</a><?php }?>
                                             </div>
                                         </td>
                                     </tr>

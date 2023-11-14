@@ -179,8 +179,8 @@ $userId = $_SESSION['userInfo']['id'];
 
                                         </div>
                                         <div>
-                                            <!-- <label for="pass">Ubusobanuro</label> -->
-                                            <!-- <textarea requied name="description"
+                                            <label for="pass">Ubusobanuro</label>
+                                            <textarea requied name="inshamake"
                                                 placeholder="CYURINYANA Agnes ararega uwo bashakanye KANAMUGIRE Faustin... "
                                                 class="form-control">
                                                 </textarea>
@@ -191,7 +191,7 @@ $userId = $_SESSION['userInfo']['id'];
                                                         plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
                                                         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
                                                     });
-                                                </script> -->
+                                                </script>
                                         </div>
                                         <input type="hidden" name="userId" value="<?php print($userId); ?>">
                                     </div>

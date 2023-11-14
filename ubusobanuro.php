@@ -127,8 +127,15 @@ $docId = $_GET['q'];
                                     Date: <?php print($row['createdAt']) ?> <br><br>
                                 </b>
                                    <p> <b><u>Imamvu</u>: </b> <?php print($row['title']) ?> <br><br></p>
-                                    
-                                            <?php print($row['description']) ?>
+                                   <h4>Ubusobanuro kukirego</h4> 
+                                   <p>
+                                        <?php print($row['ishamake']) ?>
+                                    </p>
+                                    <hr>
+                                    <h4>Umwanzuzo wurubanza</h4>
+                                    <p>
+                                        <?php print($row['description']) ?>
+                                    </p>
                                         
                                     <?php
                                     $n++;
